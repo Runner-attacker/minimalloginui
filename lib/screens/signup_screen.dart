@@ -39,10 +39,11 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController confirmpasswordcontroller = TextEditingController();
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
       body: SingleChildScrollView(
         child: Form(
           key: userform,
@@ -102,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: TextFormField(
                   validator: (value) {
                     if (!(value == passwordcontroller.text)) {
-                      return "Passord is not matched";
+                      return "Password is not matched";
                     }
                   },
                   controller: confirmpasswordcontroller,

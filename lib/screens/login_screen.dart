@@ -32,10 +32,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
+  bool passwordvisible = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    passwordvisible = false;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -66,11 +74,22 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: TextField(
               controller: passwordcontroller,
-              obscureText: true,
+              obscureText: !passwordvisible,
               decoration: InputDecoration(
                   labelText: "Password",
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15))),
+                      borderRadius: BorderRadius.circular(15)),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      passwordvisible ? Icons.visibility : Icons.visibility_off,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        passwordvisible = !passwordvisible;
+                      });
+                    },
+                  )),
             ),
           ),
           Padding(
